@@ -1,0 +1,22 @@
+<mat-grid-list cols="12" rowHeight="200px">
+  <mat-grid-tile colspan="3"  rowspan="2" >
+  </mat-grid-tile>
+  <mat-grid-tile colspan="6" rowspan="3">
+    <div style="width: 100%;">
+      <h3>Please enter your login and password</h3> <br>
+      <mat-form-field appearance="fill">
+    <mat-label>Login</mat-label>
+    <input #log matInput>
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="fill">
+    <mat-label>Password</mat-label>
+    <input #pass type="password" matInput>
+  </mat-form-field>
+  <br>
+  <button mat-stroked-button color="primary"   (click)='sign(log.value, pass.value)' >Sign</button>
+</div>
+</mat-grid-tile>
+<mat-grid-tile colspan="3" rowspan="2">
+  </mat-grid-tile>
+</mat-grid-list>

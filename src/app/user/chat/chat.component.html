@@ -1,0 +1,54 @@
+<mat-grid-list cols="12" rowHeight="200px">
+  <mat-grid-tile colspan="2"  rowspan="2" >
+  </mat-grid-tile>
+  <mat-grid-tile colspan="8" rowspan="3">
+    <div style="width: 100%;">
+      <mat-form-field>
+        <mat-label>Search... <mat-icon>search</mat-icon></mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia">
+      </mat-form-field>
+
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort>
+
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+            <td mat-cell *matCellDef="let row, let i=index"> {{i +1 }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="progress">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Login </th>
+            <td mat-cell *matCellDef="let row"> {{row.login}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+            <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="color">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Password </th>
+            <td mat-cell *matCellDef="let row" > {{row.password}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="button">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Button </th>
+            <td mat-cell *matCellDef="let row" >
+            <button mat-stroked-button color="primary" routerLink = '/chat/{{row._id}}' >Start Chat {{newMessages}} </button>
+               </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+          </tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+      </div>
+      <br><br><br>
+      <button mat-stroked-button color="accent"   (click)='logout()' >LogOut</button>
+      </div>
+</mat-grid-tile>
+<mat-grid-tile colspan="2" rowspan="2">
+  </mat-grid-tile>
+</mat-grid-list>

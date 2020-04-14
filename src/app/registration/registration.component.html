@@ -1,0 +1,30 @@
+<mat-grid-list cols="12" rowHeight="200px">
+  <mat-grid-tile colspan="3"  rowspan="2" >
+  </mat-grid-tile>
+  <mat-grid-tile colspan="6" rowspan="3">
+    <div style="width: 100%;">
+      <h3>Please enter your informations</h3><br>
+      <mat-form-field appearance="fill">
+        <mat-label>Login</mat-label>
+        <input #log matInput>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input #pass matInput>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input #name matInput>
+      </mat-form-field>
+      <br>
+      <p>Image</p>
+      <input type="file">
+      <br><br>
+    <button mat-stroked-button color="primary" (click)='submitForm(name.value, log.value, pass.value )' >Registration</button>
+</div>
+</mat-grid-tile>
+<mat-grid-tile colspan="3" rowspan="2">
+  </mat-grid-tile>
+</mat-grid-list>
