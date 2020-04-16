@@ -5,8 +5,6 @@ const mongoose = require('mongoose');
 
 const userRouter = require('./routes/user');
 const chatRouter = require('./routes/messages');
-
-
 const cors = require("cors");
 const app = express();
 
