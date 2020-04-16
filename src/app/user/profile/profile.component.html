@@ -1,1 +1,27 @@
-<p>profile works!</p>
+<mat-grid-list cols="12" rowHeight="200px">
+  <mat-grid-tile colspan="3"  rowspan="2" >
+  </mat-grid-tile>
+  <mat-grid-tile colspan="6" rowspan="3">
+    <div style="width: 100%;">
+      <h3>Your informations</h3><br>
+      <mat-form-field appearance="fill">
+        <mat-label>Login</mat-label>
+        <input value="{{login}}" disabled matInput>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input  value="{{name}}" #nam matInput>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input value="{{password}}" #pass matInput>
+      </mat-form-field>
+      <br><br>
+    <button mat-stroked-button color="primary"  (click)='update(nam.value, pass.value)'>Update</button>
+</div>
+</mat-grid-tile>
+<mat-grid-tile colspan="3" rowspan="2">
+  </mat-grid-tile>
+</mat-grid-list>

@@ -10,6 +10,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { HomeComponent } from './home/home.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { AuthGuard } from './shared/services/AuthService';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -26,6 +28,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { NotFoundComponent } from './not-found/not-found.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +38,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
     NavbarComponent,
     ProfileComponent,
     HomeComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -52,10 +56,13 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatCardModule,
     MatToolbarModule,
     MatIconModule,
-    MatGridListModule
+    MatGridListModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
-    WebsocketService
+    WebsocketService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

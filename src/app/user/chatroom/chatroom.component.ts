@@ -13,7 +13,6 @@ export class ChatroomComponent implements OnInit {
   messageArray: Array<{user: String, message: String}> = [];
   private isTyping = false;
   private chatroom;
-  private message: String;
   private username: String;
   private selectedUserName: String;
   private id: any;
@@ -59,7 +58,6 @@ export class ChatroomComponent implements OnInit {
 
   sendMessage(text) {
     this.webSocketService.sendMessage({room: this.chatroom, user: this.userService.getLoggedInUser().username, message: text});
-    this.message = '';
   }
 
   typing() {

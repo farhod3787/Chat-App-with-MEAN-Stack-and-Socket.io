@@ -1,8 +1,14 @@
-<mat-grid-list cols="12" rowHeight="100px">
+<mat-grid-list *ngIf = '!user' cols="12" rowHeight="100px">
   <mat-grid-tile colspan="6"  rowspan="2" >
     <button mat-stroked-button color="primary" routerLink='sign'>Sign</button>
   </mat-grid-tile>
   <mat-grid-tile colspan="6" rowspan="2">
 <button mat-stroked-button color="primary" routerLink='registration' >Registration</button>
+</mat-grid-tile>
+</mat-grid-list>
+
+<mat-grid-list *ngIf = 'user' cols="12" rowHeight="100px">
+  <mat-grid-tile colspan="12"  rowspan="2" >
+  <button mat-stroked-button color="primary" routerLink='user'>Start Chat</button>
 </mat-grid-tile>
 </mat-grid-list>

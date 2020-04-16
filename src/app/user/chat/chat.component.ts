@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
 })
 export class ChatComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'name', 'progress', 'color', 'button'];
+  displayedColumns: string[] = ['id', 'name', 'progress', 'button'];
   dataSource;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -24,16 +24,9 @@ export class ChatComponent implements OnInit {
     private router: Router,
     private userService: UserService
   ) {
-      this.auth();
       this.getUsers();
    }
 
-   auth() {
-     const token = localStorage.getItem('token');
-     if (!token) {
-        this.router.navigate(['sign']);
-     }
-   }
    getUsers() {
      this.userService.getUsers().subscribe( res => {
       this.dataSource = new MatTableDataSource(res.json());

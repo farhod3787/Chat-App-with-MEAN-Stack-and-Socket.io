@@ -8,7 +8,7 @@
     <br> <br>
     <mat-card-content>
       <div *ngFor="let item of messageArray">
-      <p *ngIf = 'item.user == username' class="userMessage">{{item.message}}</p>
+      <p  *ngIf = 'item.user == username' class="userMessage">{{item.message}}</p>
       <p *ngIf = 'item.user != username' class="secUserMessage">{{item.message}}</p>
       </div>
 </mat-card-content>
@@ -17,7 +17,7 @@
   <mat-grid-tile colspan="8"  rowspan="2" >
     <mat-form-field style="width: 100%;">
       <mat-label>Message</mat-label>
-      <input (keypress)="typing()" #message type="text" matInput>
+      <input (keypress)="typing()" value="{{test}}" #message type="text" matInput>
     </mat-form-field>
   </mat-grid-tile>
   <mat-grid-tile colspan="4"  rowspan="2" >

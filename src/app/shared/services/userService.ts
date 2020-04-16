@@ -9,10 +9,18 @@ export class UserService {
 
   constructor(private http: Http) { }
 
-  saveUser(user) {
-    const headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:5000/api/users', user, {headers: headers});
+
+  saveUser(
+    name: string,
+    login: string,
+    password: string
+  ) {
+    const User = {
+      name,
+      login,
+      password
+    };
+    return this.http.post('http://localhost:5000/api/', User);
   }
 
   getUser(id) {
@@ -35,10 +43,18 @@ export class UserService {
   }
 
   getUsers() {
-    return this.http.get('http://localhost:5000/api/users');
+    return this.http.get('http://localhost:5000/api/users/' + localStorage.getItem('token') );
   }
 
   getChatRoomsChat(chatRoom) {
     return this.http.get('http://localhost:5000/chatroom/' + chatRoom);
+  }
+
+  updateInformations(id, name, password) {
+    const body = {
+      name,
+      password
+    }
+    return this.http.patch('http://localhost:5000/api/' + id, body);
   }
 }
