@@ -11,18 +11,18 @@ const app = express();
 app.use(cors());
 
 
-mongoose.connect('mongodb+srv://farhod:7Q8SfcHx.F2J.HG@cluster0-uf7cc.mongodb.net/chat_socket?retryWrites=true', { useNewUrlParser: true })
-    .then(() => {
-        console.log('MongoDB connected.');
-    })
-    .catch(err => console.log(err));
+// mongoose.connect('mongodb+srv://farhod:7Q8SfcHx.F2J.HG@cluster0-uf7cc.mongodb.net/chat_socket?retryWrites=true', { useNewUrlParser: true })
+//     .then(() => {
+//         console.log('MongoDB connected.');
+//     })
+//     .catch(err => console.log(err));
 
-// mongoose.connect("mongodb://localhost:27017/chat_socket_mongo").then( () => {
-//     console.log('Connected to database')
-// })
-// .catch( () =>{
-//     console.log('Error in connected database')
-// });
+mongoose.connect("mongodb://localhost:27017/chat_socket_mongo").then( () => {
+    console.log('Connected to database')
+})
+.catch( () =>{
+    console.log('Error in connected database')
+});
 
 
 

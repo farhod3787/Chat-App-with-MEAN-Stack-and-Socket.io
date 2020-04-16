@@ -11,6 +11,7 @@
   border-radius: 5px;
   margin-top: 1px;
   color: white;
+  display:inline-block;
 }
 
 .secUserMessage {
@@ -21,6 +22,8 @@
   border-radius: 5px;
   margin-top: 1px;
   color: black;
+  display:inline-block;
+
 }
 
 .isTyping {

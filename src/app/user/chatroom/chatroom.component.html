@@ -8,7 +8,9 @@
     <br> <br>
     <mat-card-content>
       <div *ngFor="let item of messageArray">
+        <div class="text-right">
       <p  *ngIf = 'item.user == username' class="userMessage">{{item.message}}</p>
+    </div>
       <p *ngIf = 'item.user != username' class="secUserMessage">{{item.message}}</p>
       </div>
 </mat-card-content>
