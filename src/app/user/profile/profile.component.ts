@@ -12,6 +12,7 @@ export class ProfileComponent implements OnInit {
      name: String;
      password: String;
      login: String;
+     image; String;
      id: String
   constructor(
     private userService: UserService,
@@ -27,6 +28,7 @@ export class ProfileComponent implements OnInit {
        this.login =  user.login;
        this.name =  user.name;
        this.password =  user.password;
+       this.image = user.image;
      });
 
    }

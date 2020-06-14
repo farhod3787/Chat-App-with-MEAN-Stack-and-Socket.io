@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
 })
 export class ChatComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'name', 'progress', 'button'];
+  displayedColumns: string[] = ['image', 'name', 'login', 'button'];
   dataSource;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;

@@ -59,14 +59,9 @@ const io = socket.listen(server);
 
 io.sockets.on('connection', (socket) => {
   socket.on('join', async (data) => {
-    console.log("data");
-    console.log(data);
       socket.join(data.room);
       const chats = await chatRooms.find({name: data.room});
-      console.log(chats.length);
-
       if (chats.length === 0) {
-        console.log("data2");
           let room = {
             name : data.room,
             messages: [],
@@ -74,26 +69,8 @@ io.sockets.on('connection', (socket) => {
           };
           let chat = new chatRooms(room);
           chat.save().then( result => {
-          console.log("data3");
-            console.log(result);
           });
       }
-
-      // chatRooms.find({}).toArray((err, rooms) => {
-      //     if(err){
-      //         console.log(err);
-      //         return false;
-      //     }
-      //     count = 0;
-      //     rooms.forEach((room) => {
-      //         if(room.name == data.room){
-      //             count++;
-      //         }
-      //     });
-      //     if(count == 0) {
-      //         chatRooms.insert({ name: data.room, messages: [] });
-      //     }
-      // });
   });
   socket.on('message', (data) => {
       io.in(data.room).emit('new message', {user: data.user, message: data.message});

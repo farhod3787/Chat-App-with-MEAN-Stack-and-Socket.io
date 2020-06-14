@@ -10,12 +10,15 @@ import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 })
 export class ChatroomComponent implements OnInit {
 
-  messageArray: Array<{user: String, message: String}> = [];
+  messageArray = [];
   private isTyping = false;
   private chatroom;
   private username: String;
   private selectedUserName: String;
   private id: any;
+  image: String;
+  warn: String;
+  status = false;
   constructor(
     private userService: UserService,
     private webSocketService: WebsocketService,
@@ -36,17 +39,29 @@ export class ChatroomComponent implements OnInit {
       if (paramMap.has('id')) {
         this.id = paramMap.get('id');
         this.userService.getUser(this.id).subscribe(res => {
+          const user = res.json();
           this.selectedUserName = res.json().name;
+          this.image = res.json().image;
           const currentUser = this.userService.getLoggedInUser();
           this.username = currentUser.username;
+
           if (this.selectedUserName < currentUser.username ) {
             this.chatroom = this.selectedUserName + currentUser.username;
           } else {
             this.chatroom = currentUser.username + this.selectedUserName;
           }
-          this.webSocketService.joinRoom({user: this.userService.getLoggedInUser().username, room: this.chatroom});
+          this.webSocketService.joinRoom({
+            user: this.userService.getLoggedInUser().username,
+            room: this.chatroom
+          });
+
           this.userService.getChatRoomsChat(this.chatroom).subscribe(messages => {
-            this.messageArray = messages.json();
+            if (!messages.json().ok) {
+              this.status = true;
+              this.warn = 'Здес пока не чего нет';
+            } else {
+            this.messageArray = messages.json().msg;
+            }
           });
         });
       } else {
@@ -57,11 +72,18 @@ export class ChatroomComponent implements OnInit {
 
 
   sendMessage(text) {
-    this.webSocketService.sendMessage({room: this.chatroom, user: this.userService.getLoggedInUser().username, message: text});
+    this.webSocketService.sendMessage({
+      room: this.chatroom,
+      user: this.userService.getLoggedInUser().username,
+      message: text
+    });
   }
 
   typing() {
-    this.webSocketService.typing({room: this.chatroom, user: this.userService.getLoggedInUser().username});
+    this.webSocketService.typing({
+      room: this.chatroom,
+      user: this.userService.getLoggedInUser().username
+    });
   }
 
 }

@@ -2,23 +2,25 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const config = require('./config/config');
 
-const userRouter = require('./routes/user');
-const chatRouter = require('./routes/messages');
+const routes = require('./routes');
 const cors = require("cors");
 const app = express();
 
 app.use(cors());
 
 
-// mongoose.connect('mongodb+srv://farhod:7Q8SfcHx.F2J.HG@cluster0-uf7cc.mongodb.net/chat_socket?retryWrites=true', { useNewUrlParser: true })
+// mongoose.connect( config.CLOUD_URL, { useNewUrlParser: true })
 //     .then(() => {
-//         console.log('MongoDB connected.');
+//         console.log('Cloud MongoDb connected.');
 //     })
 //     .catch(err => console.log(err));
 
-mongoose.connect("mongodb://localhost:27017/chat_socket_mongo").then( () => {
-    console.log('Connected to database')
+mongoose.connect(
+  config.MONGO_URL
+  ).then( () => {
+    console.log('Connected to local database')
 })
 .catch( () =>{
     console.log('Error in connected database')
@@ -32,10 +34,8 @@ module.exports = { mongoose };
 // app.use(express.bodyParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-// app.use('/', express.static(path.join(__dirname, '../dist/online-pharmacy')))
 
 app.use('/images', express.static(path.join("backend/images")));
-// app.use('/recipe', express.static(path.join("backend/recipe")));
 
 
 app.use((req, res, next) => {
@@ -51,8 +51,7 @@ app.use((req, res, next) => {
     next()
 });
 
-app.use('/api/', userRouter);
-app.use('/', chatRouter);
+app.use('/api', routes.api);
 
 
 module.exports = app;
